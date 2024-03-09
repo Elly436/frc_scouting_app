@@ -318,4 +318,9 @@ func _on_delete_all_pressed():
 	for savedMatch in $ScrollContainer/GridContainer.get_children():
 		savedMatch.queue_free()
 	$Popups/deleting.visible = false
+	save()
+	pass # Replace with function body.
+
+
+func _on_cancel_reset_pressed():
 	pass # Replace with function body.
