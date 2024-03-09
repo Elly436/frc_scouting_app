@@ -1,0 +1,846 @@
+[gd_scene load_steps=27 format=3 uid="uid://bp24dat0f3bbt"]
+
+[ext_resource type="Script" path="res://score_screen.gd" id="1_ny7y3"]
+[ext_resource type="Texture2D" uid="uid://d26osvl84ga7e" path="res://assets/scoreScreenUI (top).png" id="2_83pb6"]
+[ext_resource type="Texture2D" uid="uid://dwoa1fdye2a52" path="res://assets/scoreScreenUI (bottom).png" id="3_bapbt"]
+[ext_resource type="ButtonGroup" uid="uid://hciw2pegu2wd" path="res://autoOrDriveButtonGroup.tres" id="3_d6p3n"]
+[ext_resource type="Texture2D" uid="uid://c634ct60tdin6" path="res://assets/houseIcon.png" id="4_dbwyf"]
+[ext_resource type="Texture2D" uid="uid://ccuc15gh30xwj" path="res://assets/black.webp" id="5_1ubhg"]
+[ext_resource type="Texture2D" uid="uid://bqneo4l0etook" path="res://assets/closeIcon.png" id="6_32l5c"]
+[ext_resource type="Script" path="res://counter.gd" id="7_t13dy"]
+[ext_resource type="Script" path="res://scoringObjectInfo.gd" id="8_l5dqn"]
+[ext_resource type="Texture2D" uid="uid://oeyfxgjiviry" path="res://assets/plusSymbol.png" id="9_r1nxw"]
+[ext_resource type="Texture2D" uid="uid://clqo6sp4q8ljr" path="res://assets/minusSymbol.png" id="10_qv5d5"]
+[ext_resource type="Script" path="res://toggle.gd" id="11_jb26f"]
+[ext_resource type="Script" path="res://indexCounter.gd" id="14_hatbi"]
+[ext_resource type="Texture2D" uid="uid://dsnmgpqqeagd1" path="res://assets/false (1).png" id="14_pf86i"]
+[ext_resource type="Texture2D" uid="uid://bgx1vk1ke71po" path="res://assets/true (1).png" id="15_m321q"]
+[ext_resource type="Script" path="res://dropdown.gd" id="15_t8jqx"]
+[ext_resource type="Texture2D" uid="uid://dsnt8odep4sjo" path="res://assets/right-arrow.png" id="16_r6cnf"]
+[ext_resource type="Theme" uid="uid://b8or44lh1orga" path="res://dropdownTheme.tres" id="17_lwgsk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt2oq"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7vql"]
+bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tnby"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_top = 4
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.513726, 1, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4xay"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+border_width_left = 2
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0.513726, 1, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aano5"]
+bg_color = Color(0.223529, 0.223529, 0.223529, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fuxyd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yglw5"]
+font_size = 30
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_460uf"]
+
+[node name="gameLoader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ny7y3")
+
+[node name="background2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bt2oq")
+
+[node name="Panel" type="Panel" parent="background2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7vql")
+
+[node name="Panel2" type="Panel" parent="background2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_bottom = -102.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7tnby")
+
+[node name="Panel3" type="Panel" parent="background2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_bottom = -102.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4xay")
+
+[node name="top" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -253.0
+offset_top = 23.0
+offset_right = 257.0
+offset_bottom = 169.0
+grow_horizontal = 2
+texture = ExtResource("2_83pb6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="bottom" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -269.0
+offset_right = 247.0
+offset_bottom = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_bapbt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="matchNumber" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 10.0
+offset_top = 103.0
+offset_right = 215.0
+offset_bottom = 142.0
+grow_horizontal = 2
+scale = Vector2(1.01027, 0.745043)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Match Number"
+alignment = 2
+max_length = 6
+clear_button_enabled = true
+flat = true
+
+[node name="teamNumber" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 9.0
+offset_top = 60.0
+offset_right = 215.0
+offset_bottom = 96.0
+grow_horizontal = 2
+scale = Vector2(1.01027, 0.745043)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Team Number"
+alignment = 2
+max_length = 6
+clear_button_enabled = true
+flat = true
+
+[node name="finalScore" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -205.0
+offset_right = 214.0
+offset_bottom = -171.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.00845, 0.749192)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Final Score"
+alignment = 2
+max_length = 6
+clear_button_enabled = true
+flat = true
+
+[node name="personalScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -245.0
+offset_right = 199.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="auto" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -144.0
+offset_right = -2.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_d6p3n")
+text = "auto    "
+flat = true
+alignment = 2
+
+[node name="drive" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -143.0
+offset_right = 1.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+toggle_mode = true
+button_group = ExtResource("3_d6p3n")
+text = "    drive"
+flat = true
+alignment = 0
+
+[node name="generateQRCode" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -78.0
+offset_right = 86.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "generate QR code"
+
+[node name="homeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_top = -24.0
+offset_right = 123.0
+offset_bottom = 28.0
+grow_vertical = 0
+rotation = 3.14159
+icon = ExtResource("16_r6cnf")
+flat = true
+expand_icon = true
+
+[node name="save" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 121.0
+offset_top = -77.0
+offset_right = 185.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "save"
+
+[node name="constantCounters" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="autoCounters" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="driveCounters" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="constantToggles" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="autoToggles" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="driveToggles" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="constantDropdowns" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="autoDropdowns" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="driveDropdowns" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="homeUnsavedMessage" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="homeUnsavedMessage"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aano5")
+
+[node name="wannasave" type="Label" parent="homeUnsavedMessage"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 43.0
+offset_right = 316.0
+offset_bottom = 95.0
+text = "Your work is not fully saved yet,
+do you wish to save it?"
+horizontal_alignment = 1
+
+[node name="save" type="Button" parent="homeUnsavedMessage"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 132.0
+offset_right = 134.0
+offset_bottom = 163.0
+text = "yes"
+
+[node name="goHome" type="Button" parent="homeUnsavedMessage"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 132.0
+offset_right = 285.0
+offset_bottom = 163.0
+text = "no"
+
+[node name="saving" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="saving"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aano5")
+
+[node name="missingInfoMsg" type="Label" parent="saving"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.216
+anchor_right = 0.636
+anchor_bottom = 0.318
+offset_left = -175.0
+offset_top = -42.2
+offset_right = 127.4
+offset_bottom = 136.4
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "Saving..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="missingInfo" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="missingInfo"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aano5")
+
+[node name="missingInfoMsg" type="Label" parent="missingInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.216
+anchor_right = 0.636
+anchor_bottom = 0.318
+offset_left = -175.0
+offset_right = 127.0
+offset_bottom = 52.0
+grow_horizontal = 2
+text = "You are missing important information.
+(Check that you have entered a team
+number and match number)"
+horizontal_alignment = 1
+
+[node name="ok" type="Button" parent="missingInfo"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 139.0
+offset_right = 210.0
+offset_bottom = 170.0
+text = "ok"
+
+[node name="Popup" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -200.0
+offset_right = 201.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QRCodeBG" type="TextureRect" parent="Popup"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -350.0
+offset_right = 175.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_1ubhg")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="QRCode" type="TextureRect" parent="Popup"]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -350.0
+offset_right = 175.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("CompressedTexture2D_fuxyd")
+stretch_mode = 4
+
+[node name="close" type="Button" parent="Popup"]
+self_modulate = Color(0.470588, 0.972549, 0.411765, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_bottom = 39.0
+grow_horizontal = 0
+icon = ExtResource("6_32l5c")
+flat = true
+expand_icon = true
+
+[node name="home" type="Button" parent="Popup"]
+layout_mode = 1
+offset_right = 38.0
+offset_bottom = 39.0
+scale = Vector2(1.16, 1)
+icon = ExtResource("4_dbwyf")
+flat = true
+expand_icon = true
+
+[node name="counter" type="Node2D" parent="."]
+visible = false
+script = ExtResource("7_t13dy")
+
+[node name="template" type="Label" parent="counter"]
+offset_right = 40.0
+offset_bottom = 52.0
+scale = Vector2(1.2, 1.2)
+text = "0"
+label_settings = SubResource("LabelSettings_yglw5")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_l5dqn")
+
+[node name="symbol" type="TextureRect" parent="counter/template"]
+layout_mode = 0
+offset_left = -33.0
+offset_top = -22.0
+offset_right = 76.0
+offset_bottom = 75.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="add" type="Button" parent="counter/template"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 101.0
+offset_bottom = 46.0
+icon = ExtResource("9_r1nxw")
+flat = true
+expand_icon = true
+
+[node name="substract" type="Button" parent="counter/template"]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 7.0
+offset_right = -19.0
+offset_bottom = 46.0
+icon = ExtResource("10_qv5d5")
+flat = true
+expand_icon = true
+
+[node name="moveMe" type="Button" parent="counter/template"]
+layout_mode = 0
+offset_left = -13.0
+offset_top = -8.0
+offset_right = 53.0
+offset_bottom = 61.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_460uf")
+flat = true
+
+[node name="name" type="Label" parent="counter/template"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 51.0
+offset_right = 69.0
+offset_bottom = 74.0
+horizontal_alignment = 1
+
+[node name="namer" type="LineEdit" parent="counter"]
+offset_left = 218.0
+offset_top = 5.0
+offset_right = 309.0
+offset_bottom = 36.0
+placeholder_text = "name"
+
+[node name="toggle" type="Node2D" parent="."]
+visible = false
+script = ExtResource("11_jb26f")
+
+[node name="template" type="TextureButton" parent="toggle"]
+offset_left = 60.0
+offset_top = 62.0
+offset_right = 146.0
+offset_bottom = 148.0
+scale = Vector2(1.2, 1.2)
+toggle_mode = true
+texture_normal = ExtResource("14_pf86i")
+texture_pressed = ExtResource("15_m321q")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("8_l5dqn")
+
+[node name="moveMe" type="Button" parent="toggle/template"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 81.0
+offset_bottom = 77.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_460uf")
+flat = true
+
+[node name="name" type="Label" parent="toggle/template"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = 66.0
+offset_right = 102.0
+offset_bottom = 93.0
+horizontal_alignment = 1
+
+[node name="namer" type="LineEdit" parent="toggle"]
+offset_left = 218.0
+offset_top = 5.0
+offset_right = 309.0
+offset_bottom = 36.0
+placeholder_text = "name"
+
+[node name="dropdown" type="Node2D" parent="."]
+visible = false
+scale = Vector2(1.2, 1.2)
+script = ExtResource("14_hatbi")
+
+[node name="template" type="OptionButton" parent="dropdown"]
+offset_left = 39.0
+offset_top = 33.0
+offset_right = 165.0
+offset_bottom = 64.0
+theme = ExtResource("17_lwgsk")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("15_t8jqx")
+
+[node name="moveMe" type="Button" parent="dropdown/template"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -18.0
+offset_right = 129.0
+offset_bottom = 51.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_460uf")
+flat = true
+
+[node name="category" type="Label" parent="dropdown/template"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -26.0
+offset_right = 125.0
+offset_bottom = -3.0
+horizontal_alignment = 1
+
+[node name="indexCounter" type="Label" parent="dropdown"]
+visible = false
+offset_left = 244.0
+offset_top = 49.0
+offset_right = 283.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+
+[node name="plus" type="Button" parent="dropdown/indexCounter"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 4.0
+offset_right = 68.0
+offset_bottom = 40.0
+icon = ExtResource("16_r6cnf")
+flat = true
+expand_icon = true
+
+[node name="minus" type="Button" parent="dropdown/indexCounter"]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_top = 40.0
+offset_right = 47.0
+offset_bottom = 76.0
+rotation = 3.14159
+icon = ExtResource("16_r6cnf")
+flat = true
+expand_icon = true
+
+[node name="option" type="LineEdit" parent="dropdown"]
+visible = false
+offset_left = 218.0
+offset_top = 102.0
+offset_right = 309.0
+offset_bottom = 133.0
+placeholder_text = "option"
+
+[node name="category" type="LineEdit" parent="dropdown"]
+visible = false
+offset_left = 218.0
+offset_top = 5.0
+offset_right = 309.0
+offset_bottom = 36.0
+placeholder_text = "name"
+
+[node name="pointValue" type="LineEdit" parent="dropdown"]
+visible = false
+offset_left = 230.0
+offset_top = 179.0
+offset_right = 297.063
+offset_bottom = 210.0
+placeholder_text = "0"
+max_length = 2
+
+[node name="outlier" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -305.0
+offset_right = -72.0
+offset_bottom = -271.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+text = "outlier?"
+
+[node name="comment" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = -297.0
+offset_right = -194.0
+offset_bottom = -257.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+placeholder_text = "comment"
+
+[connection signal="pressed" from="auto" to="." method="_on_auto_pressed"]
+[connection signal="pressed" from="drive" to="." method="_on_drive_pressed"]
+[connection signal="pressed" from="generateQRCode" to="." method="_on_generate_qr_code_pressed"]
+[connection signal="pressed" from="homeButton" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="homeUnsavedMessage/save" to="." method="_on_save_then_home_pressed"]
+[connection signal="pressed" from="homeUnsavedMessage/goHome" to="." method="_on_go_home_without_saving_pressed"]
+[connection signal="pressed" from="missingInfo/ok" to="." method="_on_close_missing_info_warning"]
+[connection signal="pressed" from="Popup/close" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Popup/home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="counter/template/moveMe" to="counter/template" method="_on_move_me_pressed"]
+[connection signal="text_changed" from="counter/namer" to="counter/template" method="_on_namer_text_changed"]
+[connection signal="pressed" from="toggle/template/moveMe" to="toggle/template" method="_on_move_me_pressed"]
+[connection signal="text_changed" from="toggle/namer" to="toggle/template" method="_on_namer_text_changed"]
+[connection signal="pressed" from="dropdown/template/moveMe" to="dropdown/template" method="_on_move_me_pressed"]
+[connection signal="pressed" from="dropdown/indexCounter/plus" to="dropdown" method="_on_plus_pressed"]
+[connection signal="pressed" from="dropdown/indexCounter/minus" to="dropdown" method="_on_minus_pressed"]
+[connection signal="text_changed" from="dropdown/category" to="dropdown" method="_on_category_text_changed"]
+[connection signal="pressed" from="outlier" to="." method="_on_outlier_pressed"]
+[connection signal="text_changed" from="comment" to="." method="_on_comment_text_changed"]

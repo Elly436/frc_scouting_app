@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://6q2ttu4kwhwg"]
+
+[ext_resource type="Texture2D" uid="uid://crkf8cn5xdqg1" path="res://assets/plus.png" id="1_0aw5u"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_1hg77"]
+
+[node name="mainMenu" type="Node2D"]
+script = ExtResource("1_1hg77")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 171.0
+offset_top = 665.0
+offset_right = 261.0
+offset_bottom = 762.0
+icon = ExtResource("1_0aw5u")
+expand_icon = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 25.0
+offset_top = 10.0
+offset_right = 442.0
+offset_bottom = 786.0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_create_pressed"]

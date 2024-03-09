@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsfwgl3sgujj3"]
+
+[ext_resource type="Script" path="res://draw.gd" id="1_xg4ru"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fl23u"]
+bg_color = Color(0.513726, 0.513726, 0.513726, 1)
+
+[node name="draw" type="Node2D"]
+position = Vector2(220, 306)
+script = ExtResource("1_xg4ru")
+
+[node name="undo" type="Button" parent="."]
+offset_left = -113.0
+offset_top = 166.0
+offset_right = -32.0
+offset_bottom = 203.0
+text = "undo"
+
+[node name="redo" type="Button" parent="."]
+offset_left = 39.0
+offset_top = 166.0
+offset_right = 120.0
+offset_bottom = 203.0
+text = "redo"
+
+[node name="drawing" type="Node2D" parent="."]
+
+[node name="canvas" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 245.0
+offset_right = 150.0
+offset_bottom = 545.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="canvasClick" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="bg" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -279.0
+offset_right = 180.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="canvasBG" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -244.0
+offset_right = 145.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fl23u")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="undo" to="." method="_on_undo_pressed"]
+[connection signal="pressed" from="redo" to="." method="_on_redo_pressed"]
+[connection signal="pressed" from="canvasClick" to="." method="_on_canvas_click_pressed"]

@@ -1,0 +1,476 @@
+[gd_scene load_steps=8 format=3 uid="uid://6q2ttu4kwhwg"]
+
+[ext_resource type="Texture2D" uid="uid://crkf8cn5xdqg1" path="res://assets/plus.png" id="1_0aw5u"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_1hg77"]
+[ext_resource type="Texture2D" uid="uid://ccuc15gh30xwj" path="res://assets/black.webp" id="3_hyxfw"]
+[ext_resource type="Texture2D" uid="uid://bqneo4l0etook" path="res://assets/closeIcon.png" id="4_o2hoa"]
+[ext_resource type="Theme" uid="uid://b8or44lh1orga" path="res://dropdownTheme.tres" id="5_sjlu6"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b14al"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yvxm"]
+bg_color = Color(0.223529, 0.223529, 0.223529, 1)
+
+[node name="mainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1hg77")
+
+[node name="Popups" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Popup" type="Control" parent="Popups"]
+visible = false
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -219.0
+offset_right = 203.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QRCodeBG" type="TextureRect" parent="Popups/Popup"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -350.0
+offset_right = 175.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_hyxfw")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="QRCode" type="TextureRect" parent="Popups/Popup"]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -350.0
+offset_right = 175.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("CompressedTexture2D_b14al")
+stretch_mode = 4
+
+[node name="close" type="Button" parent="Popups/Popup"]
+self_modulate = Color(0.470588, 0.972549, 0.411765, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_bottom = 39.0
+grow_horizontal = 0
+icon = ExtResource("4_o2hoa")
+flat = true
+expand_icon = true
+
+[node name="deleteMessage" type="Control" parent="Popups"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="Popups/deleteMessage"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yvxm")
+
+[node name="usure" type="Label" parent="Popups/deleteMessage"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 43.0
+offset_right = 316.0
+offset_bottom = 95.0
+text = "Are you sure you want to delete this
+ save?"
+horizontal_alignment = 1
+
+[node name="delete" type="Button" parent="Popups/deleteMessage"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 132.0
+offset_right = 134.0
+offset_bottom = 163.0
+text = "delete"
+
+[node name="cancel" type="Button" parent="Popups/deleteMessage"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 132.0
+offset_right = 285.0
+offset_bottom = 163.0
+text = "cancel"
+
+[node name="resetMessage" type="Control" parent="Popups"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="Popups/resetMessage"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yvxm")
+
+[node name="usure" type="Label" parent="Popups/resetMessage"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 43.0
+offset_right = 316.0
+offset_bottom = 95.0
+text = "Are you sure you want to delete this
+ save?"
+horizontal_alignment = 1
+
+[node name="delete" type="Button" parent="Popups/resetMessage"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 132.0
+offset_right = 134.0
+offset_bottom = 163.0
+text = "delete"
+
+[node name="cancel" type="Button" parent="Popups/resetMessage"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 132.0
+offset_right = 285.0
+offset_bottom = 163.0
+text = "cancel"
+
+[node name="missingMatchType" type="Control" parent="Popups"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="Popups/missingMatchType"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yvxm")
+
+[node name="missingMatchType" type="Label" parent="Popups/missingMatchType"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 43.0
+offset_right = 339.0
+offset_bottom = 121.0
+text = "You have not created a match type yet. 
+(select <new match type> in the 
+drop down to do so)"
+horizontal_alignment = 1
+
+[node name="create" type="Button" parent="Popups/missingMatchType"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 138.0
+offset_right = 134.0
+offset_bottom = 169.0
+text = "create"
+
+[node name="cancel" type="Button" parent="Popups/missingMatchType"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 138.0
+offset_right = 285.0
+offset_bottom = 169.0
+text = "cancel"
+
+[node name="foundShare" type="Control" parent="Popups"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="Popups/foundShare"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yvxm")
+
+[node name="msg" type="Label" parent="Popups/foundShare"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 43.0
+offset_right = 339.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 20
+text = "A shared scoring screen was found,
+do you wish to download it?"
+horizontal_alignment = 1
+
+[node name="download" type="Button" parent="Popups/foundShare"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 138.0
+offset_right = 148.0
+offset_bottom = 169.0
+text = "download"
+
+[node name="cancel" type="Button" parent="Popups/foundShare"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 138.0
+offset_right = 292.0
+offset_bottom = 169.0
+text = "cancel"
+
+[node name="deleting" type="Control" parent="Popups"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="Popups/deleting"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yvxm")
+
+[node name="msg" type="Label" parent="Popups/deleting"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 6.0
+offset_right = 339.0
+offset_bottom = 197.0
+theme_override_font_sizes/font_size = 20
+text = "Deleting..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sharing" type="Control" parent="Popups"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="Popups/sharing"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yvxm")
+
+[node name="msg" type="Label" parent="Popups/sharing"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 77.0
+offset_right = 339.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 20
+text = "You are sharing blablabla."
+horizontal_alignment = 1
+
+[node name="stopSharing" type="Button" parent="Popups/sharing"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 138.0
+offset_right = 236.0
+offset_bottom = 169.0
+text = "stop sharing"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.505
+anchor_bottom = 1.0
+offset_left = -289.0
+offset_top = 104.0
+offset_right = 284.0
+offset_bottom = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -152.0
+offset_right = 55.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("1_0aw5u")
+expand_icon = true
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -287.0
+offset_top = 31.0
+offset_right = -32.0
+offset_bottom = 93.0
+grow_horizontal = 0
+theme = ExtResource("5_sjlu6")
+theme_override_font_sizes/font_size = 20
+expand_icon = true
+item_count = 2
+allow_reselect = true
+popup/item_0/text = "new match type"
+popup/item_0/id = 0
+popup/item_1/text = "shared match type"
+popup/item_1/id = 1
+
+[node name="resetButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -174.0
+offset_top = -94.0
+offset_right = -79.0
+offset_bottom = -44.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+theme_override_font_sizes/font_size = 18
+text = "reset"
+
+[node name="getSharedButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -188.0
+offset_top = 298.0
+offset_right = -98.0
+offset_bottom = 336.0
+text = "find share"
+
+[node name="save" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = -162.0
+offset_right = 162.0
+offset_bottom = -112.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+theme_override_font_sizes/font_size = 18
+text = "save"
+
+[node name="load" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = -93.0
+offset_right = 162.0
+offset_bottom = -43.0
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+theme_override_font_sizes/font_size = 18
+text = "load"
+
+[connection signal="pressed" from="Popups/Popup/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Popups/Popup/close" to="Popups/Popup" method="_on_close_pressed"]
+[connection signal="pressed" from="Popups/deleteMessage/delete" to="." method="_on_delete_save_pressed"]
+[connection signal="pressed" from="Popups/deleteMessage/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Popups/resetMessage/delete" to="." method="_on_delete_all_pressed"]
+[connection signal="pressed" from="Popups/resetMessage/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Popups/missingMatchType/create" to="." method="_on_create_new_match_type_pressed"]
+[connection signal="pressed" from="Popups/missingMatchType/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Popups/foundShare/download" to="." method="_on_download_pressed"]
+[connection signal="pressed" from="Popups/foundShare/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Popups/sharing/stopSharing" to="." method="_on_stop_sharing_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_create_pressed"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="resetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="button_down" from="getSharedButton" to="." method="_on_get_shared_button_down"]
+[connection signal="pressed" from="save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="load" to="." method="_on_load_pressed"]
