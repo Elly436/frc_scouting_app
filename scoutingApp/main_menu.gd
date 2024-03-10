@@ -62,7 +62,8 @@ func loadSaves(items):
 		saveInstance.constantDropdowns = save[12]
 		saveInstance.contents = save[13]
 		saveInstance.outlier = save[14]
-		saveInstance.comment = save[15]
+		saveInstance.auto_path = save[15]
+		saveInstance.comment = save[16]
 		var qr_code: QrCode = QrCode.new()
 		qr_code.error_correct_level = 0
 		var texture = qr_code.get_texture(saveInstance.contents)
@@ -95,6 +96,7 @@ func newScoringInstance():
 	score_screenInstance.constantDropdowns = selected.constantDropdowns
 	score_screenInstance.contents = selected.contents
 	score_screenInstance.outlier = selected.outlier
+	score_screenInstance.auto_path = selected.auto_path
 	score_screenInstance.comment = selected.comment
 	score_screenInstance.inHomeScreen = true
 	score_screenInstance.texture = selected.qrCodeTexture
@@ -145,6 +147,7 @@ func _on_save(inHomeScreen):
 	saveInstance.constantDropdowns = score_screenInstance.constantDropdowns
 	saveInstance.contents = score_screenInstance.contents
 	saveInstance.outlier = score_screenInstance.outlier
+	saveInstance.auto_path = score_screenInstance.auto_path
 	saveInstance.comment = score_screenInstance.comment
 	saveInstance.qrCodeTexture = score_screenInstance.texture
 	saveInstance.update()
@@ -281,7 +284,7 @@ func save():
 	for save in $ScrollContainer/GridContainer.get_children():
 		var saveInfo = [save.teamNumber, save.matchNumber, save.personalScore, save.totalScore, 
 		save.driveCounts, save.autoCounts, save.constantCounts, save.driveToggles, save.autoToggles,
-		save.constantToggles, save.autoDropdowns, save.driveDropdowns, save.constantDropdowns, save.contents, save.outlier, save.comment]
+		save.constantToggles, save.autoDropdowns, save.driveDropdowns, save.constantDropdowns, save.contents, save.outlier, save.auto_path, save.comment]
 		#save_resource.savedItems.append(saveInfo)
 		savedItems.append(saveInfo)
 	#save_resource.scoreScreensInfo = Global.scoreScreensInfo
@@ -323,4 +326,5 @@ func _on_delete_all_pressed():
 
 
 func _on_cancel_reset_pressed():
+	$Popups/resetMessage.visible = false
 	pass # Replace with function body.

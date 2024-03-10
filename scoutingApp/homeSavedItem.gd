@@ -19,6 +19,7 @@ var autoDropdowns = []
 var constantDropdowns = []
 var contents = ""
 var outlier = false
+var auto_path = []
 var comment = ""
 
 var qrCodeTexture:Texture 

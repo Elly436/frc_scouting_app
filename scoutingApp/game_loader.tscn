@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://bp24dat0f3bbt"]
+[gd_scene load_steps=28 format=3 uid="uid://bp24dat0f3bbt"]
 
 [ext_resource type="Script" path="res://score_screen.gd" id="1_ny7y3"]
 [ext_resource type="Texture2D" uid="uid://d26osvl84ga7e" path="res://assets/scoreScreenUI (top).png" id="2_83pb6"]
 [ext_resource type="Texture2D" uid="uid://dwoa1fdye2a52" path="res://assets/scoreScreenUI (bottom).png" id="3_bapbt"]
 [ext_resource type="ButtonGroup" uid="uid://hciw2pegu2wd" path="res://autoOrDriveButtonGroup.tres" id="3_d6p3n"]
+[ext_resource type="PackedScene" uid="uid://ds37cibhgvn8s" path="res://auto_path.tscn" id="4_47066"]
 [ext_resource type="Texture2D" uid="uid://c634ct60tdin6" path="res://assets/houseIcon.png" id="4_dbwyf"]
 [ext_resource type="Texture2D" uid="uid://ccuc15gh30xwj" path="res://assets/black.webp" id="5_1ubhg"]
 [ext_resource type="Texture2D" uid="uid://bqneo4l0etook" path="res://assets/closeIcon.png" id="6_32l5c"]
@@ -210,6 +211,11 @@ theme_override_font_sizes/font_size = 18
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="auto path" parent="." instance=ExtResource("4_47066")]
+layout_mode = 1
+offset_top = -155.0
+offset_bottom = -155.0
 
 [node name="auto" type="Button" parent="."]
 layout_mode = 1

@@ -15,6 +15,7 @@ var autoDropdowns = []
 var constantDropdowns = []
 var auto = true
 var outlier= false
+var auto_path = []
 var comment = ""
 
 var inHomeScreen = false
@@ -234,7 +235,8 @@ func init(): #initializes all of the buttons, binds the necessary signals with a
 		dropdown.item_selected.connect(_change_dropdown)
 		driveDropdowns.insert(i,0)
 		i+=1
-
+	$personalScoreLabel.text = str(score)
+	$"auto path".setup = false
 
 func showButtons():
 	$generateQRCode.visible = true
@@ -310,6 +312,7 @@ func creatingInit(): #initializes all of the buttons, binds the necessary signal
 		driveDropdowns.insert(i,0)
 		i+=1
 	$personalScoreLabel.text = str(score)
+	$"auto path".setup = false
 
 func missingImportantInfo():
 	teamNumber = $teamNumber.text
@@ -318,7 +321,7 @@ func missingImportantInfo():
 		$missingInfo.visible = true
 		return true
 
-func update():
+func update(): #shows the values stored in the match save in the main menu
 	var i = 0
 	for counter in get_node("driveCounters").get_children():
 		var add = counter.get_node("add")
@@ -386,6 +389,9 @@ func update():
 	$finalScore.text = str(finalScore)
 	$outlier.button_pressed = outlier
 	$comment.text = comment
+	$"auto path".result = auto_path
+	$"auto path".updateNumbers()
+	$"auto path".setup = false
 	
 
 func _add_score(button, index, value, countList):
@@ -412,6 +418,7 @@ func _on_auto_pressed():
 	$driveToggles.visible = false
 	$autoDropdowns.visible = true
 	$driveDropdowns.visible = false
+	$"auto path".visible = true
 
 
 
@@ -422,6 +429,7 @@ func _on_drive_pressed():
 	$driveToggles.visible = true
 	$autoDropdowns.visible = false
 	$driveDropdowns.visible = true
+	$"auto path".visible = false
 
 func _toggle(button, index, pointValue, list):
 	list[index] = button.button_pressed
@@ -472,7 +480,7 @@ func _on_generate_qr_code_pressed():
 	
 
 func generateQRCode():
-	contents = "team:" + $teamNumber.text + "*match:" + $matchNumber.text + "*personal_score:" + str(score) + "*total_score:" + $finalScore.text + "*outlier:" + str(int($outlier.button_pressed)) + "*comment:" + comment
+	contents = "team:" + $teamNumber.text + "*match:" + $matchNumber.text + "*personal_score:" + str(score) + "*total_score:" + $finalScore.text + "*outlier:" + str(int($outlier.button_pressed)) + "*comment:" + comment + "*auto path:" + str($"auto path".result)
 	
 	var i = 0 
 	for objectNumber in autoCounts:
@@ -525,6 +533,7 @@ func generateQRCode():
 
 	qr_code_image.texture = texture
 	qr_code_image.move_to_front()
+	
 
 func _on_window_close_requested():
 	popup.hide()
@@ -543,8 +552,9 @@ func _on_save_pressed():
 		$saving.visible = true
 		teamNumber = $teamNumber.text
 		matchNumber = $matchNumber.text
-		var i = 0
 		finalScore = $finalScore.text
+		auto_path = $"auto path".result
+		print(auto_path)
 		generateQRCode()
 		save.emit(inHomeScreen)
 		inHomeScreen = true

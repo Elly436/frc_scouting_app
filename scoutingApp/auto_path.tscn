@@ -1,0 +1,300 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds37cibhgvn8s"]
+
+[ext_resource type="Script" path="res://auto_path.gd" id="1_tbqg8"]
+[ext_resource type="Texture2D" uid="uid://bu2lblivurlc8" path="res://assets/ring unpressed.png" id="2_lh5ej"]
+[ext_resource type="Texture2D" uid="uid://c8l3ujxqh7pnn" path="res://assets/ring pressed.png" id="3_m6w2s"]
+[ext_resource type="Texture2D" uid="uid://dxx0xs2rlyxol" path="res://assets/repeat.png" id="4_qmi2b"]
+
+[node name="auto path" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbqg8")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.5
+offset_top = -155.5
+offset_right = 206.5
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(206.5, 160.5)
+
+[node name="ring1" type="TextureButton" parent="bg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 132.5
+offset_top = 248.0
+offset_right = 186.5
+offset_bottom = 305.0
+toggle_mode = true
+texture_normal = ExtResource("2_lh5ej")
+texture_pressed = ExtResource("3_m6w2s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number" type="Label" parent="bg/ring1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ring2" type="TextureButton" parent="bg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 133.5
+offset_top = 188.0
+offset_right = 187.5
+offset_bottom = 245.0
+toggle_mode = true
+texture_normal = ExtResource("2_lh5ej")
+texture_pressed = ExtResource("3_m6w2s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number" type="Label" parent="bg/ring2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ring3" type="TextureButton" parent="bg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 133.5
+offset_top = 127.0
+offset_right = 187.5
+offset_bottom = 184.0
+toggle_mode = true
+texture_normal = ExtResource("2_lh5ej")
+texture_pressed = ExtResource("3_m6w2s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number" type="Label" parent="bg/ring3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ring4" type="TextureButton" parent="bg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 133.5
+offset_top = 66.0
+offset_right = 187.5
+offset_bottom = 123.0
+toggle_mode = true
+texture_normal = ExtResource("2_lh5ej")
+texture_pressed = ExtResource("3_m6w2s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number" type="Label" parent="bg/ring4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ring5" type="TextureButton" parent="bg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 133.5
+offset_top = 5.0
+offset_right = 187.5
+offset_bottom = 62.0
+toggle_mode = true
+texture_normal = ExtResource("2_lh5ej")
+texture_pressed = ExtResource("3_m6w2s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number" type="Label" parent="bg/ring5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ring6" type="TextureButton" parent="bg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.5
+offset_top = 248.0
+offset_right = -14.5
+offset_bottom = 305.0
+toggle_mode = true
+texture_normal = ExtResource("2_lh5ej")
+texture_pressed = ExtResource("3_m6w2s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number" type="Label" parent="bg/ring6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ring7" type="TextureButton" parent="bg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.5
+offset_top = 188.0
+offset_right = -14.5
+offset_bottom = 245.0
+toggle_mode = true
+texture_normal = ExtResource("2_lh5ej")
+texture_pressed = ExtResource("3_m6w2s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number" type="Label" parent="bg/ring7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ring8" type="TextureButton" parent="bg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -69.5
+offset_top = 127.0
+offset_right = -15.5
+offset_bottom = 184.0
+toggle_mode = true
+texture_normal = ExtResource("2_lh5ej")
+texture_pressed = ExtResource("3_m6w2s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="number" type="Label" parent="bg/ring8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="flip" type="Button" parent="."]
+layout_mode = 0
+offset_left = -236.0
+offset_top = 123.0
+offset_right = -181.0
+offset_bottom = 180.0
+icon = ExtResource("4_qmi2b")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="flip" to="." method="_on_flip_pressed"]
