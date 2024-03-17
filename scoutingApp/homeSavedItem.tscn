@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdjkty46rmgyc"]
+[gd_scene load_steps=5 format=3 uid="uid://cdjkty46rmgyc"]
 
 [ext_resource type="Texture2D" uid="uid://bqneo4l0etook" path="res://assets/closeIcon.png" id="1_8yy24"]
 [ext_resource type="Script" path="res://homeSavedItem.gd" id="1_o6sge"]
+[ext_resource type="Texture2D" uid="uid://dnyw5burw4728" path="res://assets/rec.png" id="3_og8er"]
+[ext_resource type="Texture2D" uid="uid://bg4i4a8twlv4c" path="res://assets/check.png" id="4_s2ka5"]
 
 [node name="Panel" type="Panel"]
 custom_minimum_size = Vector2(400, 110)
@@ -85,6 +87,18 @@ scale = Vector2(1.2, 1.2)
 icon = ExtResource("1_8yy24")
 flat = true
 expand_icon = true
+
+[node name="check" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 370.0
+offset_top = -10.0
+offset_right = 410.0
+offset_bottom = 30.0
+toggle_mode = true
+texture_normal = ExtResource("3_og8er")
+texture_pressed = ExtResource("4_s2ka5")
+ignore_texture_size = true
+stretch_mode = 5
 
 [connection signal="pressed" from="qr" to="." method="_on_qr_pressed"]
 [connection signal="pressed" from="open" to="." method="_on_open_pressed"]

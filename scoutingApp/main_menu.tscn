@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://6q2ttu4kwhwg"]
+[gd_scene load_steps=11 format=3 uid="uid://6q2ttu4kwhwg"]
 
 [ext_resource type="Texture2D" uid="uid://crkf8cn5xdqg1" path="res://assets/plus.png" id="1_0aw5u"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1hg77"]
 [ext_resource type="Texture2D" uid="uid://ccuc15gh30xwj" path="res://assets/black.webp" id="3_hyxfw"]
 [ext_resource type="Texture2D" uid="uid://bqneo4l0etook" path="res://assets/closeIcon.png" id="4_o2hoa"]
+[ext_resource type="Texture2D" uid="uid://dsnt8odep4sjo" path="res://assets/right-arrow.png" id="4_wddrx"]
+[ext_resource type="Texture2D" uid="uid://dnyw5burw4728" path="res://assets/rec.png" id="5_iwl7c"]
 [ext_resource type="Theme" uid="uid://b8or44lh1orga" path="res://dropdownTheme.tres" id="5_sjlu6"]
+[ext_resource type="Texture2D" uid="uid://bg4i4a8twlv4c" path="res://assets/check.png" id="6_vgm54"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b14al"]
 
@@ -23,19 +26,12 @@ script = ExtResource("1_1hg77")
 [node name="Popups" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Popup" type="Control" parent="Popups"]
+[node name="Popup" type="Panel" parent="Popups"]
 visible = false
 custom_minimum_size = Vector2(400, 400)
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -197.0
-offset_top = -219.0
-offset_right = 203.0
-offset_bottom = 181.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -62,31 +58,135 @@ stretch_mode = 4
 texture_filter = 1
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -175.0
-offset_top = -350.0
+offset_top = -175.0
 offset_right = 175.0
+offset_bottom = 175.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 texture = SubResource("CompressedTexture2D_b14al")
 stretch_mode = 4
 
 [node name="close" type="Button" parent="Popups/Popup"]
-self_modulate = Color(0.470588, 0.972549, 0.411765, 1)
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -38.0
-offset_bottom = 39.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 127.0
+offset_top = -214.5
+offset_right = 165.0
+offset_bottom = -175.5
+grow_horizontal = 2
+grow_vertical = 2
 icon = ExtResource("4_o2hoa")
 flat = true
 expand_icon = true
+
+[node name="last" type="Button" parent="Popups/Popup"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -35.0
+offset_right = -91.0
+offset_bottom = 36.0
+scale = Vector2(-1, 1)
+icon = ExtResource("4_wddrx")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="next" type="Button" parent="Popups/Popup"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 164.0
+offset_top = -35.0
+offset_right = 237.0
+offset_bottom = 36.0
+icon = ExtResource("4_wddrx")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="check" type="TextureButton" parent="Popups/Popup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 176.0
+offset_top = -208.0
+offset_right = 216.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+texture_normal = ExtResource("5_iwl7c")
+texture_pressed = ExtResource("6_vgm54")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="deleteMessage2" type="Control" parent="Popups"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 175.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgColor" type="Panel" parent="Popups/deleteMessage2"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yvxm")
+
+[node name="usure" type="Label" parent="Popups/deleteMessage2"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 43.0
+offset_right = 316.0
+offset_bottom = 95.0
+text = "Are you sure you want to delete this
+template?"
+horizontal_alignment = 1
+
+[node name="delete" type="Button" parent="Popups/deleteMessage2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 132.0
+offset_right = 134.0
+offset_bottom = 163.0
+text = "delete"
+
+[node name="cancel" type="Button" parent="Popups/deleteMessage2"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 132.0
+offset_right = 285.0
+offset_bottom = 163.0
+text = "cancel"
 
 [node name="deleteMessage" type="Control" parent="Popups"]
 visible = false
@@ -162,8 +262,8 @@ offset_left = 37.0
 offset_top = 43.0
 offset_right = 316.0
 offset_bottom = 95.0
-text = "Are you sure you want to delete this
- save?"
+text = "Are you sure you want to delete these
+saves?"
 horizontal_alignment = 1
 
 [node name="delete" type="Button" parent="Popups/resetMessage"]
@@ -363,6 +463,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(420, 130)
 layout_mode = 2
 
 [node name="Button" type="Button" parent="."]
@@ -400,6 +501,20 @@ popup/item_0/text = "new match type"
 popup/item_0/id = 0
 popup/item_1/text = "shared match type"
 popup/item_1/id = 1
+
+[node name="deleteTemplate" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = -93.9999
+offset_right = 156.0
+offset_bottom = -43.9999
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+theme_override_font_sizes/font_size = 18
+text = "delete"
 
 [node name="resetButton" type="Button" parent="."]
 layout_mode = 1
@@ -459,6 +574,10 @@ text = "load"
 
 [connection signal="pressed" from="Popups/Popup/close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Popups/Popup/close" to="Popups/Popup" method="_on_close_pressed"]
+[connection signal="pressed" from="Popups/Popup/last" to="." method="_on_last_QR_pressed"]
+[connection signal="pressed" from="Popups/Popup/next" to="." method="_on_next_QR_pressed"]
+[connection signal="pressed" from="Popups/deleteMessage2/delete" to="." method="_on_delete_template_popup_button_pressed"]
+[connection signal="pressed" from="Popups/deleteMessage2/cancel" to="." method="_on_cancel_template_deleting_pressed"]
 [connection signal="pressed" from="Popups/deleteMessage/delete" to="." method="_on_delete_save_pressed"]
 [connection signal="pressed" from="Popups/deleteMessage/cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="Popups/resetMessage/delete" to="." method="_on_delete_all_pressed"]
@@ -470,6 +589,7 @@ text = "load"
 [connection signal="pressed" from="Popups/sharing/stopSharing" to="." method="_on_stop_sharing_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_create_pressed"]
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="deleteTemplate" to="." method="_on_delete_template_pressed"]
 [connection signal="pressed" from="resetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="button_down" from="getSharedButton" to="." method="_on_get_shared_button_down"]
 [connection signal="pressed" from="save" to="." method="_on_save_pressed"]

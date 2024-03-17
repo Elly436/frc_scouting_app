@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://do5glyhkamkbl"]
+[gd_scene load_steps=31 format=3 uid="uid://do5glyhkamkbl"]
 
 [ext_resource type="Script" path="res://score_screen.gd" id="1_cxxev"]
 [ext_resource type="Script" path="res://scoringObjectInfo.gd" id="1_e46uv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dwoa1fdye2a52" path="res://assets/scoreScreenUI (bottom).png" id="4_5v3v1"]
 [ext_resource type="Texture2D" uid="uid://clqo6sp4q8ljr" path="res://assets/minusSymbol.png" id="4_owtbx"]
 [ext_resource type="Texture2D" uid="uid://bqneo4l0etook" path="res://assets/closeIcon.png" id="5_nwp75"]
+[ext_resource type="PackedScene" uid="uid://ds37cibhgvn8s" path="res://auto_path.tscn" id="5_xf3ih"]
 [ext_resource type="Script" path="res://counter.gd" id="8_8eour"]
 [ext_resource type="Script" path="res://toggle.gd" id="12_jwx02"]
 [ext_resource type="Script" path="res://indexCounter.gd" id="13_8jiku"]
@@ -271,6 +272,11 @@ theme_override_font_sizes/font_size = 18
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="auto path" parent="template" instance=ExtResource("5_xf3ih")]
+layout_mode = 1
+offset_top = -155.0
+offset_bottom = -155.0
 
 [node name="auto" type="Button" parent="template"]
 layout_mode = 1

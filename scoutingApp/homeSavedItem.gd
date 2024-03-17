@@ -43,7 +43,7 @@ func update():
 
 
 func _on_qr_pressed():
-	openQR.emit(qrCodeTexture)
+	openQR.emit(self)
 
 
 func _on_open_pressed():
