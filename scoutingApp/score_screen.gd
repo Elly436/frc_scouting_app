@@ -480,7 +480,7 @@ func _on_generate_qr_code_pressed():
 	
 
 func generateQRCode():
-	contents = "team:" + $teamNumber.text + "*match:" + $matchNumber.text + "*personal_score:" + str(score) + "*total_score:" + $finalScore.text + "*outlier:" + str(int($outlier.button_pressed)) + "*comment:" + comment + "*auto path:" + str($"auto path".result)
+	contents = "team:" + $teamNumber.text + "*match:" + $matchNumber.text + "*personal score:" + str(score) + "*total score:" + $finalScore.text + "*outlier:" + str(int($outlier.button_pressed)) + "*comment:" + comment + "*auto path:" + str($"auto path".result)
 	
 	var i = 0 
 	for objectNumber in autoCounts:
