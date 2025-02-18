@@ -3,7 +3,7 @@ from openpyxl.styles import PatternFill
 from openpyxl.styles.differential import DifferentialStyle
 from openpyxl.formatting.rule import Rule
 
-file_name = "idahotest"
+file_name = "test_2"
 
 categories = ["personal score", "total score", "dcsnl", "dskd", "hullo"]
 #categories = ["personal_score", "total_score", "fadjj"]
@@ -23,7 +23,7 @@ for i in range(len(rankingCategories)):
 
 averageLast5Cells = []
 for i in range(len(rankingCategories)):
-    averageCells.append(getLetter(len(categories) + 5 + len(averageCells) + i))
+    averageLast5Cells.append(getLetter(len(categories) + 6 + len(averageCells) + i))
 
 averageCellText = [] # generate the text that makes the averages
 for i in rankingsIndex:
@@ -32,11 +32,10 @@ for i in rankingsIndex:
     for x in i:
         if num > 0:
             text += "+"
-        text += 'AVERAGE(' + getLetter(x) + '2:INDIRECT("'+ getLetter(x)+'"&COUNTA(' + getLetter(x) + ':' + getLetter(x) + ')))'
+        text += 'AVERAGE(' + getLetter(x+1) + '2:INDIRECT("'+ getLetter(x+1)+'"&COUNTA(' + getLetter(x+1) + ':' + getLetter(x+1) + ')))'
         num += 1
     averageCellText.append(text)
 
-print(averageCellText)
 
 
 averageLast5CellText = []
@@ -46,11 +45,10 @@ for i in rankingsIndex:
     for x in i:
         if num > 0:
             text += "+"
-        text += 'AVERAGE(INDIRECT("'+ getLetter(x)+'"&(COUNTA(' + getLetter(x) + ':' + getLetter(x) + ')-5)):INDIRECT("'+ getLetter(x)+'"&COUNTA(' + getLetter(x) + ':' + getLetter(x) + ')))'
+        text += 'AVERAGE(INDIRECT("'+ getLetter(x+1)+'"&(COUNTA(' + getLetter(x+1) + ':' + getLetter(x+1) + ')-5)):INDIRECT("'+ getLetter(x+1)+'"&COUNTA(' + getLetter(x+1) + ':' + getLetter(x+1) + ')))'
         num += 1
     averageLast5CellText.append(text)
 
-print(averageLast5CellText)
 
 workbook = load_workbook(filename=file_name + ".xlsx")
 #sheet = workbook["6364"]
@@ -79,7 +77,7 @@ def writeRow(rowNumber, list, team):
 def createTeamSheet(team):
     workbook.create_sheet(team)
     
-    headers = categories
+    headers = categories[:]
     headers.append("comment")
     headers.append("outlier")
     headers.insert(0, "match")
@@ -89,6 +87,7 @@ def createTeamSheet(team):
     headers.extend(averageLast5CellText)
     writeRow(1, headers, team)
     workbook[team].freeze_panes = "A2"
+    print(categories)
     # categories.remove("comment")
     # categories.remove("outlier")
     # categories.remove("match")
