@@ -1,17 +1,56 @@
-import json
 from openpyxl import load_workbook
-from openpyxl.chart import LineChart, Reference
-import random
+from openpyxl.styles import PatternFill
+from openpyxl.styles.differential import DifferentialStyle
+from openpyxl.formatting.rule import Rule
 
-file_name = "idaho"
+file_name = "idahotest"
 
-categories = ["personal score", "total score", "pickup", "auto path", "leave",
-              "auto amp", "auto speaker", "teleop amp", "speaker no boost", "speaker boosted",
-              "end position", "harmony", "trap"]
+categories = ["personal score", "total score", "dcsnl", "dskd", "hullo"]
 #categories = ["personal_score", "total_score", "fadjj"]
 
-rankingCategories = ["personal score ranking", "amp ranking", "speaker ranking"]
-averageCells = ["B", "I", "J"]
+def getLetter(number):
+    charstr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    chars = list(charstr)
+    output = chars[number]
+    return output
+
+rankingCategories = ["personal score", "dcsnl", "dskd + hullo"]
+rankingsIndex = [[0], [2], [3, 4]] #index of the category it corresponds to
+
+averageCells = [] # the row of the reference for the ranking sheets
+for i in range(len(rankingCategories)):
+    averageCells.append(getLetter(len(categories) + 5 + i))
+
+averageLast5Cells = []
+for i in range(len(rankingCategories)):
+    averageCells.append(getLetter(len(categories) + 5 + len(averageCells) + i))
+
+averageCellText = [] # generate the text that makes the averages
+for i in rankingsIndex:
+    num = 0
+    text = "="
+    for x in i:
+        if num > 0:
+            text += "+"
+        text += 'AVERAGE(' + getLetter(x) + '2:INDIRECT("'+ getLetter(x)+'"&COUNTA(' + getLetter(x) + ':' + getLetter(x) + ')))'
+        num += 1
+    averageCellText.append(text)
+
+print(averageCellText)
+
+
+averageLast5CellText = []
+for i in rankingsIndex:
+    num = 0
+    text = "="
+    for x in i:
+        if num > 0:
+            text += "+"
+        text += 'AVERAGE(INDIRECT("'+ getLetter(x)+'"&(COUNTA(' + getLetter(x) + ':' + getLetter(x) + ')-5)):INDIRECT("'+ getLetter(x)+'"&COUNTA(' + getLetter(x) + ':' + getLetter(x) + ')))'
+        num += 1
+    averageLast5CellText.append(text)
+
+print(averageLast5CellText)
 
 workbook = load_workbook(filename=file_name + ".xlsx")
 #sheet = workbook["6364"]
@@ -20,12 +59,6 @@ workbook = load_workbook(filename=file_name + ".xlsx")
 # for category in categories:
 #     if not category + " ranking" in workbook.sheetnames:
 #         workbook.create_sheet(category + " ranking")
-
-def getLetter(number):
-    charstr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    chars = list(charstr)
-    output = chars[number]
-    return output
 
 def splitString(toSplit, splitter):
     returnList = [""]
@@ -45,20 +78,34 @@ def writeRow(rowNumber, list, team):
 
 def createTeamSheet(team):
     workbook.create_sheet(team)
+    
     headers = categories
     headers.append("comment")
     headers.append("outlier")
     headers.insert(0, "match")
+    headers.extend([None, "average:"])
+    headers.extend(averageCellText)
+    headers.extend(["avg last 5:"])
+    headers.extend(averageLast5CellText)
     writeRow(1, headers, team)
     workbook[team].freeze_panes = "A2"
-    categories.remove("comment")
-    categories.remove("outlier")
-    categories.remove("match")
+    # categories.remove("comment")
+    # categories.remove("outlier")
+    # categories.remove("match")
+    # for thing in [None, "average:", '=INDIRECT("B"&COUNTA(A:A))', '=INDIRECT("I"&COUNTA(A:A))', '=INDIRECT("L"&COUNTA(A:A))', 'avg last 5:', '=INDIRECT("B"&COUNTA(A:A)+1)', '=INDIRECT("I"&COUNTA(A:A)+1)', '=INDIRECT("L"&COUNTA(A:A)+1)']:
+    #     categories.remove(thing)
 
-    writeRow(3, ["average:", '=AVERAGE(INDIRECT("B"&(COUNTA(B2:B2)),TRUE):INDIRECT("B"&(COUNTA(B2:B2)+1),TRUE))', None, None, None, None, None, None, '=AVERAGE(INDIRECT("I"&(COUNTA(I2:I3)),TRUE):INDIRECT("I"&(COUNTA(I2:I3)+1),TRUE))', '=AVERAGE(INDIRECT("J"&(COUNTA(J2:J3)),TRUE):INDIRECT("J"&(COUNTA(J2:J3)+1),TRUE))', '=AVERAGE(INDIRECT("H"&(COUNTA(H2:H3)),TRUE):INDIRECT("H"&(COUNTA(H2:H3)+1),TRUE))'], team)
+    red_background = PatternFill(bgColor="00FFFF00")
+    diff_style = DifferentialStyle(fill= red_background)
+    rule = Rule(type="expression", dxf= diff_style)
+    rule.formula = ["$P1=1"]
+    workbook[team].conditional_formatting.add("A1:O100", rule)
 
+    
+
+    #=AVERAGE(INDIRECT("B"&(COUNTA(B2:B2)-5),TRUE):INDIRECT("B"&(COUNTA(B2:B2)+1),TRUE))
     for i in range(len(rankingCategories)):
-        workbook[rankingCategories[i]].append([team, "="+str(team)+"!"+averageCells[i]+"3"])
+        workbook[rankingCategories[i]+" ranking"].append([team, "='"+str(team)+"'!"+averageCells[i]+"1", "='"+str(team)+"'!"+averageLast5Cells[i]+"1"])
 
 
 def addMatch(string_data):
@@ -75,6 +122,9 @@ def addMatch(string_data):
         createTeamSheet(team)
     activeSheet = workbook[team]
     matchExists = False
+
+    #print(data_dict)
+
     i = 2
     for row in activeSheet.iter_rows(min_row=2, values_only=True):
         if row[0] is None:

@@ -19,7 +19,6 @@ while True:
         if ret_qr:
             for s, p in zip(decoded_info, points):
                 if s:
-                    print(s)
                     spreadsheetCom.addMatch(s)
                     color = (0, 255, 0)
                 else:

@@ -28,6 +28,7 @@ var texture: ImageTexture
 var substation
 
 var move
+var open_comment = false
 
 signal save(inHomeScreen)
 
@@ -467,8 +468,8 @@ func _on_outlier_pressed():
 	saved = false
 
 
-func _on_comment_text_changed(new_text):
-	comment = new_text
+func _on_comment_text_changed():
+	comment = $comment.text
 	saved = false
 	pass # Replace with function body.
 
@@ -576,3 +577,21 @@ func _on_go_home_without_saving_pressed():
 func _on_close_missing_info_warning():
 	$missingInfo.visible = false
 
+
+
+func _on_comment_focus_entered():
+	if not open_comment:
+		$AnimationPlayer.play("comment_box")
+		open_comment = true
+		$comment_bg.visible = true
+		$closeComment.visible = true
+	pass # Replace with function body.
+
+
+func _on_close_comment():
+	$AnimationPlayer.play_backwards("comment_box")
+	$comment.release_focus()
+	$comment_bg.visible = false
+	$closeComment.visible = false
+	open_comment = false
+	pass # Replace with function body.

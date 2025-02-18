@@ -6,8 +6,8 @@ var setup = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var i = 1
-	for ring in $bg.get_children():
-		ring.toggled.connect(_on_ring_toggled.bind(i))
+	for item in $bg.get_children():
+		item.toggled.connect(_on_item_toggled.bind(i))
 		i +=1
 	pass # Replace with function body.
 
@@ -16,7 +16,7 @@ func _ready():
 func _process(delta):
 	pass
 	
-func _on_ring_toggled(button_pressed, number): #when a ring is pressed, add it to the result array if it was not pressed yet and removes it if it was already in
+func _on_item_toggled(button_pressed, number): #when a ring is pressed, add it to the result array if it was not pressed yet and removes it if it was already in
 	if not setup:
 		if button_pressed:
 			result.append(number)
@@ -31,9 +31,9 @@ func _on_ring_toggled(button_pressed, number): #when a ring is pressed, add it t
 
 func updateNumbers():
 	for i in range(len(result)):
-			var ringNum = result[i]-1
-			$bg.get_children()[ringNum].get_node("number").text = str(i+1)
-			$bg.get_children()[ringNum].button_pressed = true
+		var ringNum = result[i]-1
+		$bg.get_children()[ringNum].get_node("number").text = str(i+1)
+		$bg.get_children()[ringNum].button_pressed = true
 			
 
 

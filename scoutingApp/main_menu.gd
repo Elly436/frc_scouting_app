@@ -1,8 +1,5 @@
 extends Control
 
-@onready var save_file_path = "user://save/"
-@onready var save_file_name = "saveInfo.tres"
-
 const save_path = "user://save_data.save"
 var scoreScreensInfo = {}
 var currentScoreType = ""
@@ -18,18 +15,11 @@ var score_screenInstance
 var selected
 var scoreScreenSharedName
 
-@export var Address = "127.0.0.1"
-@export var port = 6364
-var peer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	loadData()
 	#verify_save_directory(save_file_path)
-	multiplayer.peer_disconnected.connect(peer_disconnected)
-	multiplayer.connected_to_server.connect(connected_to_server)
-	multiplayer.connection_failed.connect(connection_failed)
-	multiplayer.peer_connected.connect(peer_connected)
 	_updateMatchTypes()
 	pass # Replace with function body.
 
@@ -227,64 +217,16 @@ func _on_create_new_match_type_pressed():
 	gameCreatorInstance.updateMatchTypes.connect(_updateMatchTypes)
 	$Popups/missingMatchType.visible = false
 	
-# this get called on the server and clients
-func peer_connected(id = 1):
-	print("Player Connected " + str(id))
-	
-# this get called on the server and clients
-func peer_disconnected(id = 1):
-	print("Player Disconnected " + str(id))
-
-			
-# called only from clients
-func connected_to_server():
-	print("connected To Sever!")
-	$Popups/foundShare.visible = true
-
-# called only from clients
-func connection_failed():
-	print("Couldnt Connect")
-
-@rpc("any_peer")
-func SendInformation(id):
-	var scoreScreenName = $OptionButton.get_item_text($OptionButton.selected)
-	var scoreScreenInfo = Global.scoreScreensInfo[$OptionButton.get_item_text($OptionButton.selected)]
-		
-	if multiplayer.is_server():
-		RecieveInformation.rpc(scoreScreenName, scoreScreenInfo)
-
-@rpc("any_peer")
-func RecieveInformation(scoreScreenName, scoreScreenInfo):
-	if !Global.scoreScreensInfo.has(scoreScreenName):
-		Global.scoreScreensInfo[scoreScreenName] = scoreScreenInfo
-	scoreScreenSharedName = scoreScreenName
-	$Popups/foundShare/msg.text = "A shared scoring screen was found,\ndo you wish to download " + scoreScreenName + "?"
-	print(Global.scoreScreensInfo[scoreScreenName])
-	
-func hostGame():
-	peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(port)
-	if not error == OK:
-		print("couldn't create server, error: " + error)
-		return
-	multiplayer.multiplayer_peer = peer
-	peer_connected()
-	$Popups/sharing.visible = true
-	print("Waiting For Players!")
-	
-	
 func _on_reset_button_pressed():
 	$Popups/resetMessage.visible = true
 
 func _on_get_shared_button_down():
-	peer = ENetMultiplayerPeer.new()
-	peer.create_client(Address, port)
-	multiplayer.multiplayer_peer = peer
+	
 	pass # Replace with function body.
 
 
 func _on_download_pressed():
-	SendInformation.rpc_id(1, multiplayer.get_unique_id())
+	
 	_updateMatchTypes()
 	$Popups/foundShare.visible = false
 	$OptionButton.selected = $OptionButton.item_count-1
@@ -317,12 +259,15 @@ func loadData():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
 		Global.scoreScreensInfo = file.get_var()
-		Global.scoreScreensInfo["idaho"] = [[], [[Vector2(-46.16669, 25), "auto amp", 2], [Vector2(156.8333, 24), "auto speaker", 5]], [[Vector2(-34.16669, -188), "teleop amp", 1], [Vector2(-167.1667, -293), "speaker no boost", 2], [Vector2(89.83331, -294), "speaker boosted", 5], [Vector2(-34.16669, -97), "trap", 5]], [], [[Vector2(-248.6667, 12), "leave", 2]], [], [[Vector2(-82.83316, 152), "pickup", [0, 0], ["ground", "operator"]]], [], [[Vector2(-276.3332, 49), "end position", [0, 1, 3, 4], ["none", "park", "onstage no boost", "onstage boosted"]], [Vector2(19.66669, 47), "harmony", [0, 2, 4], ["none", "2 robots", "3 robot"]]]]
+		Global.scoreScreensInfo["idaho"] = [[], [[Vector2(-46.16669, 25), "auto amp", 2], [Vector2(156.8333, 24), "auto speaker", 5]], [[Vector2(-34.16669, -188), "teleop amp", 1], [Vector2(-167.1667, -293), "speaker no boost", 2], [Vector2(89.83331, -294), "speaker boosted", 5], [Vector2(-34.16669, -97), "trap", 5]], [], [[Vector2(-248.6667, 12), "leave", 2]], [], [[Vector2(-82.83316, 152), "pickup", [0, 0], ["ground", "operator"]]], [[Vector2(-250, 152), "start position", [0, 0, 0], ["left", "middle", "right"]]], [[Vector2(-276.3332, 49), "end position", [0, 1, 3, 4], ["none", "park", "onstage no boost", "onstage boosted"]], [Vector2(19.66669, 47), "harmony", [0, 2, 4], ["none", "2 robots", "3 robot"]]]]
+		Global.scoreScreensInfo["test_2"] = [[], [], [[Vector2(-150.1667, -273), "dskd", 3]], [], [[Vector2(-209.6667, 53), "dcsnl", 3]], [], [], [], [[Vector2(53.66669, -266), "hullo", [2, 3, 4], ["csdd", "rfwq", "dskl"]]]]
 		Global.currentScoreType = file.get_var()
 		loadSaves(file.get_var())
 		_updateMatchTypes()
 	else:
 		print("no data saved")
+		Global.scoreScreensInfo["test_2"] = [[], [], [[Vector2(-150.1667, -273), "dskd", 3]], [], [[Vector2(-209.6667, 53), "dcsnl", 3]], [], [], [], [[Vector2(53.66669, -266), "hullo", [2, 3, 4], ["csdd", "rfwq", "dskl"]]]]
+
 
 func _on_save_pressed():
 	save()

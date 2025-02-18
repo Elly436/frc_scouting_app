@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bp24dat0f3bbt"]
+[gd_scene load_steps=31 format=3 uid="uid://bp24dat0f3bbt"]
 
 [ext_resource type="Script" path="res://score_screen.gd" id="1_ny7y3"]
 [ext_resource type="Texture2D" uid="uid://d26osvl84ga7e" path="res://assets/scoreScreenUI (top).png" id="2_83pb6"]
@@ -49,6 +49,107 @@ bg_color = Color(0.223529, 0.223529, 0.223529, 1)
 font_size = 30
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_460uf"]
+
+[sub_resource type="Animation" id="Animation_muoyp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("comment:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(359, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("comment:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(40, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("comment:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(47, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("comment:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(703, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_gmabh"]
+resource_name = "comment_box"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("comment:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(359, -0.25, 0, 0.5, 9.56689, 494, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("comment:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(40, -0.25, 0, 0.25, 0, 451, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("comment:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(47, -0.25, 0, 0.25, 0, 53, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("comment:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(703, -0.25, 0, 0.25, 0, 186, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5is7"]
+_data = {
+"RESET": SubResource("Animation_muoyp"),
+"comment_box": SubResource("Animation_gmabh")
+}
 
 [node name="gameLoader" type="Control"]
 layout_mode = 3
@@ -815,20 +916,51 @@ grow_vertical = 0
 scale = Vector2(1.5, 1.5)
 text = "outlier?"
 
-[node name="comment" type="LineEdit" parent="."]
+[node name="comment_bg" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="closeComment" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 207.0
+offset_top = -866.0
+offset_right = 265.0
+offset_bottom = -812.0
+icon = ExtResource("6_32l5c")
+flat = true
+expand_icon = true
+
+[node name="comment" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 47.0
-offset_top = -297.0
-offset_right = -194.0
-offset_bottom = -257.0
+offset_top = 703.0
+offset_right = 406.0
+offset_bottom = 743.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
 placeholder_text = "comment"
+wrap_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w5is7")
+}
 
 [connection signal="pressed" from="auto" to="." method="_on_auto_pressed"]
 [connection signal="pressed" from="drive" to="." method="_on_drive_pressed"]
@@ -849,4 +981,7 @@ placeholder_text = "comment"
 [connection signal="pressed" from="dropdown/indexCounter/minus" to="dropdown" method="_on_minus_pressed"]
 [connection signal="text_changed" from="dropdown/category" to="dropdown" method="_on_category_text_changed"]
 [connection signal="pressed" from="outlier" to="." method="_on_outlier_pressed"]
+[connection signal="pressed" from="closeComment" to="." method="_on_close_comment"]
+[connection signal="focus_entered" from="comment" to="." method="_on_comment_focus_entered"]
+[connection signal="gui_input" from="comment" to="." method="_on_comment_gui_input"]
 [connection signal="text_changed" from="comment" to="." method="_on_comment_text_changed"]
