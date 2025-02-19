@@ -238,6 +238,7 @@ func init(): #initializes all of the buttons, binds the necessary signals with a
 		i+=1
 	$personalScoreLabel.text = str(score)
 	$"auto path".setup = false
+	$"auto path".visible = Global.isAutoPathVisible
 
 func showButtons():
 	$generateQRCode.visible = true
@@ -419,7 +420,7 @@ func _on_auto_pressed():
 	$driveToggles.visible = false
 	$autoDropdowns.visible = true
 	$driveDropdowns.visible = false
-	$"auto path".visible = true
+	$"auto path".visible = Global.isAutoPathVisible
 
 
 

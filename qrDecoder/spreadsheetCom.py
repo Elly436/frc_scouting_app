@@ -6,7 +6,6 @@ from openpyxl.formatting.rule import Rule
 file_name = "test_2"
 
 categories = ["personal score", "total score", "dcsnl", "dskd", "hullo"]
-#categories = ["personal_score", "total_score", "fadjj"]
 
 def getLetter(number):
     charstr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

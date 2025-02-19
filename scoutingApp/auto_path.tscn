@@ -32,24 +32,24 @@ pivot_offset = Vector2(206.5, 160.5)
 
 [node name="auto_item" parent="bg" instance=ExtResource("2_5cgf2")]
 layout_mode = 0
-offset_left = 174.5
-offset_top = 49.5
-offset_right = 229.5
-offset_bottom = 104.5
+offset_left = 76.5
+offset_top = 23.5
+offset_right = 131.5
+offset_bottom = 78.5
 
 [node name="auto_item2" parent="bg" instance=ExtResource("2_5cgf2")]
 layout_mode = 0
-offset_left = 288.5
-offset_top = 125.5
-offset_right = 343.5
-offset_bottom = 180.5
+offset_left = 75.5
+offset_top = 88.5
+offset_right = 130.5
+offset_bottom = 143.5
 
 [node name="auto_item3" parent="bg" instance=ExtResource("2_5cgf2")]
 layout_mode = 0
-offset_left = 177.5
-offset_top = 220.5
-offset_right = 232.5
-offset_bottom = 275.5
+offset_left = 255.5
+offset_top = 22.5
+offset_right = 372.5
+offset_bottom = 139.5
 
 [node name="flip" type="Button" parent="."]
 layout_mode = 0
