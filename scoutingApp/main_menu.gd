@@ -259,14 +259,16 @@ func loadData():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
 		Global.scoreScreensInfo = file.get_var()
-		Global.scoreScreensInfo["idaho"] = [[], [[Vector2(-46.16669, 25), "auto amp", 2], [Vector2(156.8333, 24), "auto speaker", 5]], [[Vector2(-34.16669, -188), "teleop amp", 1], [Vector2(-167.1667, -293), "speaker no boost", 2], [Vector2(89.83331, -294), "speaker boosted", 5], [Vector2(-34.16669, -97), "trap", 5]], [], [[Vector2(-248.6667, 12), "leave", 2]], [], [[Vector2(-82.83316, 152), "pickup", [0, 0], ["ground", "operator"]]], [[Vector2(-250, 152), "start position", [0, 0, 0], ["left", "middle", "right"]]], [[Vector2(-276.3332, 49), "end position", [0, 1, 3, 4], ["none", "park", "onstage no boost", "onstage boosted"]], [Vector2(19.66669, 47), "harmony", [0, 2, 4], ["none", "2 robots", "3 robot"]]]]
-		Global.scoreScreensInfo["test_2"] = [[], [], [[Vector2(-150.1667, -273), "dskd", 3]], [], [[Vector2(-209.6667, 53), "dcsnl", 3]], [], [], [], [[Vector2(53.66669, -266), "hullo", [2, 3, 4], ["csdd", "rfwq", "dskl"]]]]
+		# place the preset match type save below:
+		#Global.scoreScreensInfo["idaho"] = [[], [[Vector2(-46.16669, 25), "auto amp", 2], [Vector2(156.8333, 24), "auto speaker", 5]], [[Vector2(-34.16669, -188), "teleop amp", 1], [Vector2(-167.1667, -293), "speaker no boost", 2], [Vector2(89.83331, -294), "speaker boosted", 5], [Vector2(-34.16669, -97), "trap", 5]], [], [[Vector2(-248.6667, 12), "leave", 2]], [], [[Vector2(-82.83316, 152), "pickup", [0, 0], ["ground", "operator"]]], [[Vector2(-250, 152), "start position", [0, 0, 0], ["left", "middle", "right"]]], [[Vector2(-276.3332, 49), "end position", [0, 1, 3, 4], ["none", "park", "onstage no boost", "onstage boosted"]], [Vector2(19.66669, 47), "harmony", [0, 2, 4], ["none", "2 robots", "3 robot"]]]]
 		Global.currentScoreType = file.get_var()
 		loadSaves(file.get_var())
 		_updateMatchTypes()
 	else:
 		print("no data saved")
-		Global.scoreScreensInfo["test_2"] = [[], [], [[Vector2(-150.1667, -273), "dskd", 3]], [], [[Vector2(-209.6667, 53), "dcsnl", 3]], [], [], [], [[Vector2(53.66669, -266), "hullo", [2, 3, 4], ["csdd", "rfwq", "dskl"]]]]
+		# place the preset match type save below:
+		#Global.scoreScreensInfo["idaho"] = [[], [[Vector2(-46.16669, 25), "auto amp", 2], [Vector2(156.8333, 24), "auto speaker", 5]], [[Vector2(-34.16669, -188), "teleop amp", 1], [Vector2(-167.1667, -293), "speaker no boost", 2], [Vector2(89.83331, -294), "speaker boosted", 5], [Vector2(-34.16669, -97), "trap", 5]], [], [[Vector2(-248.6667, 12), "leave", 2]], [], [[Vector2(-82.83316, 152), "pickup", [0, 0], ["ground", "operator"]]], [[Vector2(-250, 152), "start position", [0, 0, 0], ["left", "middle", "right"]]], [[Vector2(-276.3332, 49), "end position", [0, 1, 3, 4], ["none", "park", "onstage no boost", "onstage boosted"]], [Vector2(19.66669, 47), "harmony", [0, 2, 4], ["none", "2 robots", "3 robot"]]]]
+
 
 
 func _on_save_pressed():

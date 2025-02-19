@@ -3,8 +3,12 @@ from openpyxl.styles import PatternFill
 from openpyxl.styles.differential import DifferentialStyle
 from openpyxl.formatting.rule import Rule
 
+# change to fit your needs:
+# the name of the excel file
 file_name = "test_2"
 
+# change to fit your needs:
+# the categories (ie the name of all the buttons in the scouting app)
 categories = ["personal score", "total score", "dcsnl", "dskd", "hullo"]
 
 def getLetter(number):
@@ -13,7 +17,12 @@ def getLetter(number):
     output = chars[number]
     return output
 
+# change to fit your needs:
+# name of the rankings 
 rankingCategories = ["personal score", "dcsnl", "dskd + hullo"]
+
+# in order, index of the ranking category in the categories list (0 to len(categories))
+# if there is more than one items in the sublists, it will add them
 rankingsIndex = [[0], [2], [3, 4]] #index of the category it corresponds to
 
 averageCells = [] # the row of the reference for the ranking sheets
@@ -30,7 +39,7 @@ for i in rankingsIndex:
     text = "="
     for x in i:
         if num > 0:
-            text += "+"
+            text += "+" # adds the averages if there is more than one
         text += 'AVERAGE(' + getLetter(x+1) + '2:INDIRECT("'+ getLetter(x+1)+'"&COUNTA(' + getLetter(x+1) + ':' + getLetter(x+1) + ')))'
         num += 1
     averageCellText.append(text)
@@ -43,7 +52,7 @@ for i in rankingsIndex:
     text = "="
     for x in i:
         if num > 0:
-            text += "+"
+            text += "+" # adds the averages if there is more than one
         text += 'AVERAGE(INDIRECT("'+ getLetter(x+1)+'"&(COUNTA(' + getLetter(x+1) + ':' + getLetter(x+1) + ')-5)):INDIRECT("'+ getLetter(x+1)+'"&COUNTA(' + getLetter(x+1) + ':' + getLetter(x+1) + ')))'
         num += 1
     averageLast5CellText.append(text)
